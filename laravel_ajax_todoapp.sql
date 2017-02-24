@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 24-Fev-2017 às 20:20
+-- Generation Time: 24-Fev-2017 às 21:05
 -- Versão do servidor: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -37,7 +37,8 @@ CREATE TABLE `migrations` (
 
 INSERT INTO `migrations` (`migration`, `batch`) VALUES
 ('2014_10_12_000000_create_users_table', 1),
-('2014_10_12_100000_create_password_resets_table', 1);
+('2014_10_12_100000_create_password_resets_table', 1),
+('2017_02_24_192330_create_todo_lists_table', 2);
 
 -- --------------------------------------------------------
 
@@ -50,6 +51,37 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `todo_lists`
+--
+
+CREATE TABLE `todo_lists` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `todo_lists`
+--
+
+INSERT INTO `todo_lists` (`id`, `title`, `description`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 'Todo list 0', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 2, NULL, NULL),
+(2, 'Todo list 1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 2, NULL, NULL),
+(3, 'Todo list 2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 1, NULL, NULL),
+(4, 'Todo list 3', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 1, NULL, NULL),
+(5, 'Todo list 4', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 1, NULL, NULL),
+(6, 'Todo list 5', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 1, NULL, NULL),
+(7, 'Todo list 6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 1, NULL, NULL),
+(8, 'Todo list 7', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 1, NULL, NULL),
+(9, 'Todo list 8', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 2, NULL, NULL),
+(10, 'Todo list 9', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -87,6 +119,12 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_token_index` (`token`);
 
 --
+-- Indexes for table `todo_lists`
+--
+ALTER TABLE `todo_lists`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -97,6 +135,11 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `todo_lists`
+--
+ALTER TABLE `todo_lists`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `users`
 --
