@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 24-Fev-2017 às 14:30
+-- Generation Time: 24-Fev-2017 às 20:20
 -- Versão do servidor: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -72,7 +72,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'john', 'john@mail.com', '$2y$10$IgaeSFhOiUJ0kEZ5OrxT9.kjdTT2STwJ9YkaimubLo.habGk1M2H6', NULL, NULL, NULL),
+(1, 'john', 'john@mail.com', '$2y$10$IgaeSFhOiUJ0kEZ5OrxT9.kjdTT2STwJ9YkaimubLo.habGk1M2H6', 'VzC5y2NlZWy6voe43mbo0NSMEYcp0zDG6ATrkbl1YSnJjZ2vcs46z3fUCT5g', NULL, '2017-02-24 22:16:49'),
 (2, 'jane', 'jane@mail.com', '$2y$10$Ciid7Y11gWXvIPya1TtErOzJvfGLymyz/Vh822zG5TGFAARkHLG9e', NULL, NULL, NULL);
 
 --
