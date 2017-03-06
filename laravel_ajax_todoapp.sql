@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 24-Fev-2017 às 21:05
+-- Generation Time: 06-Mar-2017 às 15:12
 -- Versão do servidor: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -72,16 +72,17 @@ CREATE TABLE `todo_lists` (
 --
 
 INSERT INTO `todo_lists` (`id`, `title`, `description`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'Todo list 0', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 2, NULL, NULL),
+(1, 'Todo list 0', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 1, NULL, NULL),
 (2, 'Todo list 1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 2, NULL, NULL),
 (3, 'Todo list 2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 1, NULL, NULL),
-(4, 'Todo list 3', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 1, NULL, NULL),
+(4, 'Todo list 3', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 2, NULL, NULL),
 (5, 'Todo list 4', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 1, NULL, NULL),
-(6, 'Todo list 5', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 1, NULL, NULL),
-(7, 'Todo list 6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 1, NULL, NULL),
+(6, 'Todo list 5', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 2, NULL, NULL),
+(7, 'Todo list 6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 2, NULL, NULL),
 (8, 'Todo list 7', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 1, NULL, NULL),
 (9, 'Todo list 8', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 2, NULL, NULL),
-(10, 'Todo list 9', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 2, NULL, NULL);
+(10, 'Todo list 9', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 1, NULL, NULL),
+(11, 'My first todo list', 'This is my first todo list', 1, '2017-03-06 17:11:25', '2017-03-06 17:11:25');
 
 -- --------------------------------------------------------
 
@@ -139,7 +140,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `todo_lists`
 --
 ALTER TABLE `todo_lists`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `users`
 --

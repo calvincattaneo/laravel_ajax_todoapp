@@ -42,7 +42,13 @@ class TodoListsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|min:5',
+            'description' => 'min:5'
+        ]);
+
+        $todoList = $request->user()->todoLists()->create($request->all());
+        return view("todolists.item", compact('todoList'));
     }
 
     /**
