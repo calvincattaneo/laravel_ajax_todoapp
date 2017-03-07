@@ -1,11 +1,17 @@
-$('.show-todolist-modal').click(function(event) {
+$('body').on('click', '.show-todolist-modal', function(event) {
     event.preventDefault();
 
-    var url = $(this).attr('href');
+    var me = $(this),
+        url = me.attr('href'),
+        title = me.attr('title');
+
+    $('#todo-list-title').text(title);
+    $('#todo-list-save-btn').text(me.hasClass('edit') ? 'Update' : 'Create New');
+
     $.ajax({
         url: url,
         dataType: 'html',
-        success: function(response){
+        success: function(response) {
             $('#todo-list-body').html(response);
         }
     });
@@ -13,8 +19,9 @@ $('.show-todolist-modal').click(function(event) {
     $('#todolist-modal').modal('show');
 });
 
-function showMessage(message){
-    $("#add-new-alert").text(message).fadeTo(1000, 500).slideUp(500, function(){
+function showMessage(message, element) {
+    var alert = element == undefined ? "#add-new-alert" : element;
+    $(alert).text(message).fadeTo(1000, 500).slideUp(500, function() {
         $(this).hide();
     });
 }
@@ -24,16 +31,16 @@ function updateTodoListCounter() {
     $('#todo-list-counter').text(total).next().text(total > 1 ? 'records' : 'record');
 }
 
-$('#todolist-modal').on('keypress', ":input:not(textarea)", function(event){
+$('#todolist-modal').on('keypress', ":input:not(textarea)", function(event) {
     return event.keyCode != 13;
 });
 
-$('#todo-list-save-btn').click(function(event){
+$('#todo-list-save-btn').click(function(event) {
     event.preventDefault();
 
     var form = $('#todo-list-body form'),
         url = form.attr('action'),
-        method = 'POST';
+        method = $('input[name=_method]').val() == undefined ? 'POST' : 'PUT';
 
     // reset error message
     form.find('.help-block').remove();
@@ -43,25 +50,36 @@ $('#todo-list-save-btn').click(function(event){
         url: url,
         method: method,
         data: form.serialize(),
-        success: function(response){
-            $('#todo-list').prepend(response);
+        success: function(response) {
+            if (method == 'POST') {
+                $('#todo-list').prepend(response);
 
-            showMessage("Todo list has been created.");
+                showMessage("Todo list has been created.");
 
-            form.trigger('reset');
-            $('#title').focus();
+                form.trigger('reset');
+                $('#title').focus();
 
-            updateTodoListCounter();
+                updateTodoListCounter();
+            }
+            else {
+                var id = $('input[name=id]').val();
+                if (id) {
+                    $('#todo-list-' + id).replaceWith(response);
+                }
 
+                $('#todolist-modal').modal('hide');
+
+                showMessage("Todo list has been updated.", '#update-alert');
+            }
         },
-        error: function(xhr){
+        error: function(xhr) {
             var errors = xhr.responseJSON;
-            if($.isEmptyObject(errors) == false){
-                $.each(errors, function(key, value){
+            if ($.isEmptyObject(errors) == false) {
+                $.each(errors, function(key, value) {
                     $('#' + key)
                         .closest('.form-group')
                         .addClass('has-error')
-                        .append('<span class="help-block"><strong>' + value + '</strong></span>')
+                        .append('<span class="help-block"><strong>' + value + '</strong></span>');
                 });
             }
         }

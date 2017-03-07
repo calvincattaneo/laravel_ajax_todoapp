@@ -14,14 +14,14 @@ class TodoListsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
-        $todoLists = $request->user()
-                          ->todoLists()
-                          ->orderBy('updated_at', 'desc')
-                          ->get();
-        return view("todolists.index", compact('todoLists'));
-    }
+     public function index(Request $request)
+     {
+         $todoLists = $request->user()
+                         ->todoLists()
+                         ->orderBy('updated_at', 'desc')
+                         ->get();
+         return view("todolists.index", compact('todoLists'));
+     }
 
     /**
      * Show the form for creating a new resource.
@@ -70,7 +70,8 @@ class TodoListsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $todoList = TodoList::findOrFail($id);
+        return view('todolists.form', compact('todoList'));
     }
 
     /**
@@ -82,7 +83,15 @@ class TodoListsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|min:5',
+            'description' => 'min:5'
+        ]);
+
+        $todoList = TodoList::findOrFail($id);
+        $todoList->update($request->all());
+
+        return view("todolists.item", compact('todoList'));
     }
 
     /**
