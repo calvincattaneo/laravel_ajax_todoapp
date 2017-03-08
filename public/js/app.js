@@ -29,6 +29,18 @@ function showMessage(message, element) {
 function updateTodoListCounter() {
     var total = $('.list-group-item').length;
     $('#todo-list-counter').text(total).next().text(total > 1 ? 'records' : 'record');
+
+    showNoRecordMessage(total);
+}
+
+function showNoRecordMessage(total) {
+    if(total > 0) {
+        $('#todo-list').closest('.panel').removeClass('hidden');
+        $('#no-record-alert').addClass('hidden');
+    } else {
+        $('#todo-list').closest('.panel').addClass('hidden');
+        $('#no-record-alert').removeClass('hidden');
+    }
 }
 
 $('#todolist-modal').on('keypress', ":input:not(textarea)", function(event) {
@@ -82,6 +94,39 @@ $('#todo-list-save-btn').click(function(event) {
                         .append('<span class="help-block"><strong>' + value + '</strong></span>');
                 });
             }
+        }
+    });
+});
+
+$('body').on('click', '.show-confirm-modal', function(event) {
+    event.preventDefault();
+
+    var me = $(this),
+        title = me.attr('data-title'),
+        action = me.attr('href');
+
+    $('#confirm-body form').attr('action', action);
+    $('#confirm-body p').html("Are you sure you want to delete todo list: <strong>" + title + "</strong>");
+    $('#confirm-modal').modal('show');
+});
+
+$('#confirm-remove-btn').click(function(event){
+    event.preventDefault();
+
+    var form = $('#confirm-body form'),
+        url = form.attr('action');
+
+    $.ajax({
+        url: url,
+        method: 'DELETE',
+        data: form.serialize(),
+        success: function(data) {
+            $('#confirm-modal').modal('hide');
+
+            $('#todo-list-' + data.id).fadeOut(function(){
+                $(this).remove();
+                updateTodoListCounter();
+            });
         }
     });
 });
