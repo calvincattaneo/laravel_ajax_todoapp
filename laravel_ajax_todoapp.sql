@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 08-Mar-2017 às 16:47
+-- Generation Time: 09-Mar-2017 às 21:07
 -- Versão do servidor: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -38,7 +38,8 @@ CREATE TABLE `migrations` (
 INSERT INTO `migrations` (`migration`, `batch`) VALUES
 ('2014_10_12_000000_create_users_table', 1),
 ('2014_10_12_100000_create_password_resets_table', 1),
-('2017_02_24_192330_create_todo_lists_table', 2);
+('2017_02_24_192330_create_todo_lists_table', 2),
+('2017_03_09_123608_create_tasks_table', 3);
 
 -- --------------------------------------------------------
 
@@ -51,6 +52,52 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tasks`
+--
+
+CREATE TABLE `tasks` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `todo_list_id` int(10) UNSIGNED NOT NULL,
+  `completed_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `tasks`
+--
+
+INSERT INTO `tasks` (`id`, `title`, `todo_list_id`, `completed_at`, `created_at`, `updated_at`) VALUES
+(1, 'The task 1 of todo list 1', 1, NULL, '2016-05-02 11:01:00', '2016-05-02 11:01:00'),
+(2, 'The task 2 of todo list 1', 1, '2016-05-02 11:00:00', '2016-05-02 11:02:00', '2016-05-02 11:02:00'),
+(3, 'The task 1 of todo list 2', 2, NULL, '2016-05-03 11:01:00', '2016-05-03 11:01:00'),
+(4, 'The task 2 of todo list 2', 2, NULL, '2016-05-03 11:02:00', '2016-05-03 11:02:00'),
+(5, 'The task 3 of todo list 2', 2, '2016-05-03 11:00:00', '2016-05-03 11:03:00', '2016-05-03 11:03:00'),
+(6, 'The task 1 of todo list 3', 3, NULL, '2016-05-04 11:01:00', '2016-05-04 11:01:00'),
+(7, 'The task 2 of todo list 3', 3, NULL, '2016-05-04 11:02:00', '2016-05-04 11:02:00'),
+(8, 'The task 1 of todo list 4', 4, NULL, '2016-05-05 11:01:00', '2016-05-05 11:01:00'),
+(9, 'The task 1 of todo list 5', 5, NULL, '2016-05-06 11:01:00', '2016-05-06 11:01:00'),
+(10, 'The task 2 of todo list 5', 5, NULL, '2016-05-06 11:02:00', '2016-05-06 11:02:00'),
+(11, 'The task 1 of todo list 6', 6, NULL, '2016-05-07 11:01:00', '2016-05-07 11:01:00'),
+(12, 'The task 2 of todo list 6', 6, '2016-05-07 11:00:00', '2016-05-07 11:02:00', '2016-05-07 11:02:00'),
+(13, 'The task 3 of todo list 6', 6, '2016-05-07 11:00:00', '2016-05-07 11:03:00', '2016-05-07 11:03:00'),
+(14, 'The task 1 of todo list 7', 7, NULL, '2016-05-08 11:01:00', '2016-05-08 11:01:00'),
+(15, 'The task 1 of todo list 8', 8, '2016-05-09 11:00:00', '2016-05-09 11:01:00', '2016-05-09 11:01:00'),
+(16, 'The task 2 of todo list 8', 8, NULL, '2016-05-09 11:02:00', '2016-05-09 11:02:00'),
+(17, 'The task 1 of todo list 9', 9, '2016-05-10 11:00:00', '2016-05-10 11:01:00', '2016-05-10 11:01:00'),
+(18, 'The task 2 of todo list 9', 9, '2016-05-10 11:00:00', '2016-05-10 11:02:00', '2016-05-10 11:02:00'),
+(19, 'The task 3 of todo list 9', 9, NULL, '2016-05-10 11:03:00', '2016-05-10 11:03:00'),
+(20, 'The task 4 of todo list 9', 9, NULL, '2016-05-10 11:04:00', '2016-05-10 11:04:00'),
+(21, 'The task 5 of todo list 9', 9, NULL, '2016-05-10 11:05:00', '2016-05-10 11:05:00'),
+(22, 'The task 1 of todo list 10', 10, NULL, '2016-05-11 11:01:00', '2016-05-11 11:01:00'),
+(23, 'The task 2 of todo list 10', 10, NULL, '2016-05-11 11:02:00', '2016-05-11 11:02:00'),
+(24, 'The task 3 of todo list 10', 10, NULL, '2016-05-11 11:03:00', '2016-05-11 11:03:00'),
+(25, 'The task 4 of todo list 10', 10, '2016-05-11 11:00:00', '2016-05-11 11:04:00', '2016-05-11 11:04:00');
 
 -- --------------------------------------------------------
 
@@ -72,11 +119,16 @@ CREATE TABLE `todo_lists` (
 --
 
 INSERT INTO `todo_lists` (`id`, `title`, `description`, `user_id`, `created_at`, `updated_at`) VALUES
-(2, 'Todo list 1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 2, NULL, NULL),
-(4, 'Todo list 3', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 2, NULL, NULL),
-(6, 'Todo list 5', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 2, NULL, NULL),
-(7, 'Todo list 6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 2, NULL, NULL),
-(9, 'Todo list 8', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 2, NULL, NULL);
+(1, 'Todo list 1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 2, '2016-05-02 11:00:00', '2016-05-02 11:00:00'),
+(2, 'Todo list 2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 2, '2016-05-03 11:00:00', '2016-05-03 11:00:00'),
+(3, 'Todo list 3', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 2, '2016-05-04 11:00:00', '2016-05-04 11:00:00'),
+(4, 'Todo list 4', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 2, '2016-05-05 11:00:00', '2016-05-05 11:00:00'),
+(5, 'Todo list 5', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 2, '2016-05-06 11:00:00', '2016-05-06 11:00:00'),
+(6, 'Todo list 6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 1, '2016-05-07 11:00:00', '2016-05-07 11:00:00'),
+(7, 'Todo list 7', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 1, '2016-05-08 11:00:00', '2016-05-08 11:00:00'),
+(8, 'Todo list 8', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 2, '2016-05-09 11:00:00', '2016-05-09 11:00:00'),
+(9, 'Todo list 9', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 2, '2016-05-10 11:00:00', '2016-05-10 11:00:00'),
+(10, 'Todo list 10', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit ultrices mauris, ac posuere metus venenatis ac', 1, '2016-05-11 11:00:00', '2016-05-11 11:00:00');
 
 -- --------------------------------------------------------
 
@@ -114,6 +166,13 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_token_index` (`token`);
 
 --
+-- Indexes for table `tasks`
+--
+ALTER TABLE `tasks`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tasks_todo_list_id_foreign` (`todo_list_id`);
+
+--
 -- Indexes for table `todo_lists`
 --
 ALTER TABLE `todo_lists`
@@ -131,15 +190,30 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `tasks`
+--
+ALTER TABLE `tasks`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+--
 -- AUTO_INCREMENT for table `todo_lists`
 --
 ALTER TABLE `todo_lists`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Limitadores para a tabela `tasks`
+--
+ALTER TABLE `tasks`
+  ADD CONSTRAINT `tasks_todo_list_id_foreign` FOREIGN KEY (`todo_list_id`) REFERENCES `todo_lists` (`id`) ON DELETE CASCADE;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
