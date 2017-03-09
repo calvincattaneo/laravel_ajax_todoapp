@@ -18,9 +18,22 @@ class TodoListsController extends Controller
      {
          $todoLists = $request->user()
                          ->todoLists()
+                         ->with('tasks')
                          ->orderBy('updated_at', 'desc')
                          ->get();
          return view("todolists.index", compact('todoLists'));
+
+         /*
+         ** Habilitando log na query e mostrar na tela
+         \DB::enableQueryLog();
+         $todoLists = $request->user()
+                         ->todoLists()
+                         ->with('tasks')
+                         ->orderBy('updated_at', 'desc')
+                         ->get();
+         view("todolists.index", compact('todoLists'))->render();
+         dd(\DB::getQueryLog());
+         */
      }
 
     /**
@@ -59,7 +72,9 @@ class TodoListsController extends Controller
      */
     public function show($id)
     {
-        //
+        $todoList = TodoList::findOrFail($id);
+        $tasks = $todoList->tasks()->latest()->get();
+        return view("tasks.index", compact('tasks'));
     }
 
     /**
