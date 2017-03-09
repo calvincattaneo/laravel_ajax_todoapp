@@ -80,8 +80,7 @@ $('#todo-list-save-btn').click(function(event) {
                 }
 
                 $('#todolist-modal').modal('hide');
-
-                showMessage("Todo list has been updated.", '#update-alert');
+                showMessage("Todo list has been updated.", "#update-alert");
             }
         },
         error: function(xhr) {
@@ -126,6 +125,7 @@ $('#confirm-remove-btn').click(function(event){
             $('#todo-list-' + data.id).fadeOut(function(){
                 $(this).remove();
                 updateTodoListCounter();
+                showMessage("Todo list has been deleted", "#update-alert");
             });
         }
     });
