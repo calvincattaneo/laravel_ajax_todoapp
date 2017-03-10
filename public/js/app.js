@@ -1,3 +1,8 @@
+$( document ).ajaxError(function( event, jqxhr, settings, thrownError ) {
+    alert("Session expired. You'll be take to the login page");
+    location.href = "/login"; 
+});
+
 $('body').on('click', '.show-todolist-modal', function(event) {
     event.preventDefault();
 

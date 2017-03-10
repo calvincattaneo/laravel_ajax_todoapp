@@ -9,6 +9,14 @@ use App\TodoList;
 
 class TodoListsController extends Controller
 {
+    public function __construct()
+    {
+        // check if session expired for ajax request
+        $this->middleware('ajax-session-expired');
+        // check if user is autenticated for non-ajax request
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
