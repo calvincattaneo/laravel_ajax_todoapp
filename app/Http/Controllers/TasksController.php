@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\TodoList;
 use App\Task;
+use Carbon\Carbon;
 
 class TasksController extends Controller
 {
@@ -20,5 +21,13 @@ class TasksController extends Controller
         $task = $todoList->tasks()->create($request->all());
         return view('tasks.item', compact('task'));
 
+    }
+
+    public function update(Request $request, $todoListId, $id)
+    {
+        $task = Task::findOrFail($id);
+        $task->completed_at = $request->completed == "true" ? Carbon::now() : NULL;
+        $affectedRow = $task->update();
+        echo $affectedRow;
     }
 }
