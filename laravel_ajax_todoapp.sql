@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 09-Mar-2017 às 21:07
+-- Generation Time: 10-Mar-2017 às 14:43
 -- Versão do servidor: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -97,7 +97,13 @@ INSERT INTO `tasks` (`id`, `title`, `todo_list_id`, `completed_at`, `created_at`
 (22, 'The task 1 of todo list 10', 10, NULL, '2016-05-11 11:01:00', '2016-05-11 11:01:00'),
 (23, 'The task 2 of todo list 10', 10, NULL, '2016-05-11 11:02:00', '2016-05-11 11:02:00'),
 (24, 'The task 3 of todo list 10', 10, NULL, '2016-05-11 11:03:00', '2016-05-11 11:03:00'),
-(25, 'The task 4 of todo list 10', 10, '2016-05-11 11:00:00', '2016-05-11 11:04:00', '2016-05-11 11:04:00');
+(25, 'The task 4 of todo list 10', 10, '2016-05-11 11:00:00', '2016-05-11 11:04:00', '2016-05-11 11:04:00'),
+(26, 'Task 4', 10, NULL, '2017-03-10 16:27:34', '2017-03-10 16:27:34'),
+(27, 'The task 5 of todo list 10', 10, NULL, '2017-03-10 16:30:17', '2017-03-10 16:30:17'),
+(28, 'The task 5 of todo list 10', 10, NULL, '2017-03-10 16:30:30', '2017-03-10 16:30:30'),
+(29, 'The task 2 of todo list 7', 7, NULL, '2017-03-10 16:42:06', '2017-03-10 16:42:06'),
+(30, 'The task 3 of todo list 7', 7, NULL, '2017-03-10 16:42:18', '2017-03-10 16:42:18'),
+(31, 'The task 4 of todo list 6', 6, NULL, '2017-03-10 16:42:48', '2017-03-10 16:42:48');
 
 -- --------------------------------------------------------
 
@@ -193,7 +199,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT for table `todo_lists`
 --
